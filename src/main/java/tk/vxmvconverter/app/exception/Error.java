@@ -1,6 +1,7 @@
 package tk.vxmvconverter.app.exception;
 
 public enum Error {
+    UNKNOWN_ERROR("VXMV000", "Unknown error"),
     CONCURRENCY_ERROR("VXMV001", "Concurrency error saving conversion request"),
     SAVING_ERROR("VXMV002", "Error saving conversion request, try again later"),
     CANNOT_FIND_CONVERSION_REQUEST("VXMV003", "Cannot find conversion request"),
