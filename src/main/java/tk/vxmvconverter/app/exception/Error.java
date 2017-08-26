@@ -8,7 +8,8 @@ public enum Error {
     ERROR_COMPRESSING_SINGLE_FILE("VXMV004", "Internal error during re-compressing a single file"),
     ERROR_COMPRESSING_WHOLE_ZIP("VXMV005", "Internal error during re-building the zip file"),
     ERROR_DECOMPRESSING_UPLOADED_FILE("VXMV006", "Internal error during the de-compression of the uploaded zip file"),
-    ERROR_CONVERTING_THE_IMAGE("VXMV007", "Internal error while converting the image");
+    ERROR_CONVERTING_THE_IMAGE("VXMV007", "Internal error while converting the image"),
+    CONVERSION_IN_WRONG_STATE("VXMV008", "Conversion is in wrong state for this operation");
 
     private String code;
     private String message;

@@ -41,11 +41,32 @@ public class ConversionService {
     }
 
     @Transactional
-    public Conversion saveOrUpdate(Conversion conversion) {
-        if (get(conversion.getUuid()).getLastEdit().equals(conversion.getLastEdit())) {
-            return conversionDao.save(conversion);
+    public Conversion update(Conversion conversion) {
+        Conversion originalConversion = get(conversion.getUuid());
+        if (originalConversion == null) {
+            throw new ConverterException(Error.CANNOT_FIND_CONVERSION_REQUEST, String.format("UUID %s", conversion.getUuid()));
+        } else if (!originalConversion.getLastEdit().equals(conversion.getLastEdit())) {
+            throw new ConverterException(Error.CONCURRENCY_ERROR, String.format("UUID %s", conversion.getUuid()));
         }
-        throw new ConverterException(Error.CONCURRENCY_ERROR, String.format("UUID %s", conversion.getUuid()));
+
+        switch (originalConversion.getStatus()) {
+            case RECEIVED:
+                if (conversion.getStatus() == Status.PROCESSED) {
+                    throw new ConverterException(Error.CONVERSION_IN_WRONG_STATE, String.format("Status change from %s to %s", originalConversion.getStatus(), conversion.getStatus()));
+                }
+                break;
+            case PROCESSING:
+                if (conversion.getStatus() == Status.RECEIVED) {
+                    throw new ConverterException(Error.CONVERSION_IN_WRONG_STATE, String.format("Status change from %s to %s", originalConversion.getStatus(), conversion.getStatus()));
+                }
+                break;
+            case PROCESSED:
+                if (conversion.getStatus() != Status.PROCESSED) {
+                    throw new ConverterException(Error.CONVERSION_IN_WRONG_STATE, String.format("Status change from %s to %s", originalConversion.getStatus(), conversion.getStatus()));
+                }
+                break;
+        }
+        return conversionDao.save(conversion);
     }
 
     @Transactional

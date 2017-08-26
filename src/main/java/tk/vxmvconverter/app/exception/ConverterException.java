@@ -28,4 +28,11 @@ public class ConverterException extends RuntimeException {
         this.moreInfo = "";
     }
 
+    public Error getError() {
+        return error;
+    }
+
+    public String getMoreInfo() {
+        return moreInfo;
+    }
 }
