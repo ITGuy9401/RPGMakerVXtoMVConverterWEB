@@ -38,7 +38,7 @@ public class ConversionServiceTest {
         Conversion c1 = new Conversion();
         c1.setUuid(UUID.randomUUID().toString());
         when(conversionDao.save(any(Conversion.class))).thenReturn(c1);
-        assertEquals(conversionService.save("BLOB FINTO".getBytes(), null, null), c1.getUuid());
+        assertEquals(conversionService.save("BLOB FINTO".getBytes(), null, null, null), c1.getUuid());
         verify(conversionDao).save(any(Conversion.class));
     }
 
