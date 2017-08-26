@@ -46,7 +46,7 @@ public class ConversionServiceTest {
     public void saveOnErrorWrapsException() throws Exception {
         expectedException.expect(ConverterException.class);
         expectedException.expect(hasProperty("error", equalTo(Error.SAVING_ERROR)));
-        conversionService.save(null, null, null);
+        conversionService.save(null, null, null, null);
     }
 
     @Test

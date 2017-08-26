@@ -22,7 +22,7 @@ public class ConversionService {
     }
 
     @Transactional
-    public String save(byte[] data, ElementType type, DestinationVersion destinationVersion) throws Exception {
+    public String save(byte[] data, ElementType type, DestinationVersion destinationVersion, String email) throws Exception {
         try {
             Conversion conversion = new Conversion();
             conversion.setConversionRequest(ZonedDateTime.now());
@@ -30,6 +30,7 @@ public class ConversionService {
             conversion.setElementType(type);
             conversion.setDestinationVersion(destinationVersion);
             conversion.setStatus(Status.RECEIVED);
+            conversion.setEmail(email);
 
             Blob blobData = new SerialBlob(data);
             conversion.setData(blobData);

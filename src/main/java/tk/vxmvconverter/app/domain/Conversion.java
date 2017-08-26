@@ -17,6 +17,7 @@ public class Conversion {
     private DestinationVersion destinationVersion;
     private ElementType elementType;
     private Status status;
+    private String email;
 
     @Id
     @Column(name = "uuid")
@@ -91,5 +92,14 @@ public class Conversion {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    @Column(name = "email")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
