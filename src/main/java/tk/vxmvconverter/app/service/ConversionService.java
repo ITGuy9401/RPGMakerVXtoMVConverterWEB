@@ -52,19 +52,16 @@ public class ConversionService {
 
         switch (originalConversion.getStatus()) {
             case RECEIVED:
-                if (conversion.getStatus() == Status.PROCESSED) {
+                if (conversion.getStatus() == Status.PROCESSED)
                     throw new ConverterException(Error.CONVERSION_IN_WRONG_STATE, String.format("Status change from %s to %s", originalConversion.getStatus(), conversion.getStatus()));
-                }
                 break;
             case PROCESSING:
-                if (conversion.getStatus() == Status.RECEIVED) {
+                if (conversion.getStatus() == Status.RECEIVED)
                     throw new ConverterException(Error.CONVERSION_IN_WRONG_STATE, String.format("Status change from %s to %s", originalConversion.getStatus(), conversion.getStatus()));
-                }
                 break;
             case PROCESSED:
-                if (conversion.getStatus() != Status.PROCESSED) {
+                if (conversion.getStatus() != Status.PROCESSED)
                     throw new ConverterException(Error.CONVERSION_IN_WRONG_STATE, String.format("Status change from %s to %s", originalConversion.getStatus(), conversion.getStatus()));
-                }
                 break;
         }
         return conversionDao.save(conversion);
