@@ -2,10 +2,7 @@ package tk.vxmvconverter.app.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tk.vxmvconverter.app.domain.Conversion;
-import tk.vxmvconverter.app.domain.ConversionDao;
-import tk.vxmvconverter.app.domain.DestinationVersion;
-import tk.vxmvconverter.app.domain.ElementType;
+import tk.vxmvconverter.app.domain.*;
 
 import javax.sql.rowset.serial.SerialBlob;
 import javax.transaction.Transactional;
@@ -30,6 +27,7 @@ public class ConversionService {
             conversion.setLastEdit(ZonedDateTime.now());
             conversion.setElementType(type);
             conversion.setDestinationVersion(destinationVersion);
+            conversion.setStatus(Status.RECEIVED);
 
             Blob blobData = new SerialBlob(data);
             conversion.setData(blobData);
