@@ -13,9 +13,20 @@ public class Conversion {
     private String uuid;
     private ZonedDateTime conversionRequest;
     private ZonedDateTime conversionCompleted;
+    private ZonedDateTime lastEdit;
     private Blob data;
     private DestinationVersion destinationVersion;
     private ElementType elementType;
+    private Status status;
+
+    @Column(name = "status")
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 
     @Id
     @Column(name = "uuid")
@@ -43,6 +54,15 @@ public class Conversion {
 
     public void setConversionCompleted(ZonedDateTime conversionCompleted) {
         this.conversionCompleted = conversionCompleted;
+    }
+
+    @Column(name = "last_edit")
+    public ZonedDateTime getLastEdit() {
+        return lastEdit;
+    }
+
+    public void setLastEdit(ZonedDateTime lastEdit) {
+        this.lastEdit = lastEdit;
     }
 
     @Column(name = "data")

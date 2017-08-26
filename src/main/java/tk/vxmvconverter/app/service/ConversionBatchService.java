@@ -1,19 +1,18 @@
 package tk.vxmvconverter.app.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import tk.vxmvconverter.app.domain.ConversionDao;
+import tk.vxmvconverter.app.domain.DestinationVersion;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 public class ConversionBatchService {
 
-    public ByteArrayOutputStream convertSingleImage(ByteArrayInputStream bais) {
+    public ByteArrayOutputStream convertSingleImage(ByteArrayInputStream bais, DestinationVersion destinationVersion) {
 
         return null;
     }
 
-    public ByteArrayOutputStream convertZipFile(ByteArrayInputStream bais) {
+    public ByteArrayOutputStream convertZipFile(ByteArrayInputStream bais, DestinationVersion destinationVersion) {
 
         return null;
     }
