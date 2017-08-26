@@ -1,9 +1,8 @@
 package tk.vxmvconverter.app.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.sql.Blob;
 import java.time.ZonedDateTime;
 
@@ -19,17 +18,10 @@ public class Conversion {
     private ElementType elementType;
     private Status status;
 
-    @Column(name = "status")
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
     @Id
     @Column(name = "uuid")
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     public String getUuid() {
         return uuid;
     }
@@ -90,5 +82,14 @@ public class Conversion {
 
     public void setElementType(ElementType elementType) {
         this.elementType = elementType;
+    }
+
+    @Column(name = "status")
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
