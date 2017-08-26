@@ -3,6 +3,8 @@ package tk.vxmvconverter.app.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.vxmvconverter.app.domain.*;
+import tk.vxmvconverter.app.exception.ConverterException;
+import tk.vxmvconverter.app.exception.Error;
 
 import javax.sql.rowset.serial.SerialBlob;
 import javax.transaction.Transactional;
@@ -34,7 +36,7 @@ public class ConversionService {
 
             return conversionDao.save(conversion).getUuid();
         } catch (Exception e) {
-            throw new RuntimeException("VXMV003 - Error saving conversion request, try again later", e);
+            throw new ConverterException(Error.SAVING_ERROR, e);
         }
     }
 
@@ -43,13 +45,13 @@ public class ConversionService {
         if (get(conversion.getUuid()).getLastEdit().equals(conversion.getLastEdit())) {
             return conversionDao.save(conversion);
         }
-        throw new RuntimeException("VXMV002 - Concurrency error saving conversion request " + conversion.getUuid());
+        throw new ConverterException(Error.CONCURRENCY_ERROR, String.format("UUID %s", conversion.getUuid()));
     }
 
     @Transactional
     public void delete(String uuid) {
         if (get(uuid) == null) {
-            throw new RuntimeException("VXMV001 - Cannot find conversion request");
+            throw new ConverterException(Error.CANNOT_FIND_CONVERSION_REQUEST, String.format("UUID %s", uuid));
         }
         conversionDao.delete(uuid);
     }
