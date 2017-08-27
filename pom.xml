@@ -67,6 +67,35 @@
                 <version>1.6.0</version>
                 <executions>
                     <execution>
+                        <id>clean-web-res</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>rm</executable>
+                            <workingDirectory>src/main/resources</workingDirectory>
+                            <arguments>
+                                <argument>-rf</argument>
+                                <rgument>static</rgument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>prepare-resource-folder</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>mkdir</executable>
+                            <workingDirectory>src/main/resources</workingDirectory>
+                            <arguments>
+                                <rgument>static</rgument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>npm-install</id>
                         <phase>generate-resources</phase>
                         <goals>
@@ -87,7 +116,7 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>node_modules\.bin\bower</executable>
+                            <executable>node_modules/.bin/bower</executable>
                             <workingDirectory>src/main/resources/dev-static</workingDirectory>
                             <arguments>
                                 <argument>install</argument>
@@ -101,7 +130,7 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>node_modules\.bin\polymer</executable>
+                            <executable>node_modules/.bin/polymer</executable>
                             <workingDirectory>src/main/resources/dev-static</workingDirectory>
                             <arguments>
                                 <argument>build</argument>
@@ -118,8 +147,8 @@
                             <executable>mv</executable>
                             <workingDirectory>src/main/resources/dev-static</workingDirectory>
                             <arguments>
-                                <argument>build\default</argument>
-                                <argument>..\static</argument>
+                                <argument>build/default/*</argument>
+                                <argument>../static/*</argument>
                             </arguments>
                         </configuration>
                     </execution>
