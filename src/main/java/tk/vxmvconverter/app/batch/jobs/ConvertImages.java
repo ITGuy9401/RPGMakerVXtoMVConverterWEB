@@ -1,7 +1,11 @@
 package tk.vxmvconverter.app.batch.jobs;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.ImageHtmlEmail;
+import org.apache.commons.mail.resolver.DataSourceUrlResolver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import tk.vxmvconverter.app.domain.Conversion;
 import tk.vxmvconverter.app.domain.Status;
 import tk.vxmvconverter.app.dto.FileData;
@@ -13,6 +17,8 @@ import javax.transaction.Transactional;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Blob;
 import java.sql.SQLException;
 
@@ -22,6 +28,13 @@ public class ConvertImages implements Runnable {
 
     private ConversionService conversionService;
     private ConversionBatchService conversionBatchService;
+
+    private Environment env;
+
+    @Autowired
+    public void setEnv(Environment env) {
+        this.env = env;
+    }
 
     @Autowired
     public void setConversionService(ConversionService conversionService) {
@@ -45,7 +58,29 @@ public class ConvertImages implements Runnable {
         }
     }
 
-    private void sendEmail(Conversion conversion) {
+    private void sendEmail(Conversion conversion) throws EmailException, MalformedURLException {
+        // load your HTML email template
+        String htmlEmailTemplate = ".... <img src=\"http://www.apache.org/images/feather.gif\"> ....";
+
+        // define you base URL to resolve relative resource locations
+        URL url = new URL("http://www.apache.org");
+
+        // create the email message
+        ImageHtmlEmail email = new ImageHtmlEmail();
+        email.setDataSourceResolver(new DataSourceUrlResolver(url));
+        email.setHostName(env.getProperty("mail.hostname"));
+        email.addTo(conversion.getEmail());
+        email.setFrom(env.getProperty("mail.email"), "RPGMaker VX MV Online Converter");
+        email.setSubject("You're RPGMaker assets are ready");
+
+        // set the html message
+        email.setHtmlMsg(htmlEmailTemplate);
+
+        // set the alternative message
+        email.setTextMsg("Your email client does not support HTML messages");
+
+        // send the email
+        email.send();
 
     }
 
