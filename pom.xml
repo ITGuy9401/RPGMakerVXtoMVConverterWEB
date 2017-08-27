@@ -78,6 +78,8 @@
                             <arguments>
                                 <argument>-rf</argument>
                                 <rgument>static</rgument>
+                                <argument>|| true
+                                </argument><!-- this permit to ignore the failure on deleting the folder that may not exists -->
                             </arguments>
                         </configuration>
                     </execution>
