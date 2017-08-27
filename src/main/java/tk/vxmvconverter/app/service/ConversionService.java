@@ -21,6 +21,11 @@ public class ConversionService {
         this.conversionDao = conversionDao;
     }
 
+
+    public Conversion findNextConversionToDo() {
+        return conversionDao.findFirstByStatusOrderByConversionRequestAsc(Status.RECEIVED);
+    }
+
     @Transactional
     public String save(byte[] data, ElementType type, DestinationVersion destinationVersion, String email) throws Exception {
         try {

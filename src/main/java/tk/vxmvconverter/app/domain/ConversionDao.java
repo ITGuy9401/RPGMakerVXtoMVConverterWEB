@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface ConversionDao extends CrudRepository<Conversion, String> {
 
-    List<Conversion> findByStatusOrderByConversionRequestAsc(Status status);
+    Conversion findFirstByStatusOrderByConversionRequestAsc(Status status);
 
     List<Conversion> findByConversionCompletedAfter(ZonedDateTime conversionCompleted);
 }

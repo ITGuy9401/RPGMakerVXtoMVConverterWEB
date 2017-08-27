@@ -34,6 +34,12 @@ public class ConversionServiceTest {
     }
 
     @Test
+    public void findNextWithCorrectParameter() {
+        conversionService.findNextConversionToDo();
+        verify(conversionDao).findFirstByStatusOrderByConversionRequestAsc(Status.RECEIVED);
+    }
+
+    @Test
     public void save() throws Exception {
         Conversion c1 = new Conversion();
         c1.setUuid(UUID.randomUUID().toString());
