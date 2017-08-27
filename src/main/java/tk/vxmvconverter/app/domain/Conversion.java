@@ -18,6 +18,7 @@ public class Conversion {
     private ElementType elementType;
     private Status status;
     private String email;
+    private Boolean isInError;
 
     @Id
     @Column(name = "uuid")
@@ -101,5 +102,14 @@ public class Conversion {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Column(name = "isInError")
+    public Boolean getInError() {
+        return isInError;
+    }
+
+    public void setInError(Boolean inError) {
+        isInError = inError;
     }
 }
