@@ -148,7 +148,7 @@
                             <workingDirectory>src/main/resources/dev-static</workingDirectory>
                             <arguments>
                                 <argument>build/default/*</argument>
-                                <argument>../static/*</argument>
+                                <argument>../static/</argument>
                             </arguments>
                         </configuration>
                     </execution>
