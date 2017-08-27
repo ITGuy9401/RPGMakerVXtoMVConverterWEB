@@ -61,6 +61,66 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <id>npm-install</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>npm</executable>
+                            <workingDirectory>${project.dir}/src/main/resources/dev-static</workingDirectory>
+                            <arguments>
+                                <argument>install</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>bower-build</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>node_modules\.bin\bower</executable>
+                            <workingDirectory>${project.dir}/src/main/resources/dev-static</workingDirectory>
+                            <arguments>
+                                <argument>install</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>polymer-build</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>node_modules\.bin\polymer</executable>
+                            <workingDirectory>${project.dir}/src/main/resources/dev-static</workingDirectory>
+                            <arguments>
+                                <argument>build</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>move-files</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>mv</executable>
+                            <workingDirectory>${project.dir}/src/main/resources/dev-static</workingDirectory>
+                            <arguments>
+                                <argument>build\default</argument>
+                                <argument>..\static</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
