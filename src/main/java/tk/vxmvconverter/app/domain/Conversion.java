@@ -104,7 +104,7 @@ public class Conversion {
         this.email = email;
     }
 
-    @Column(name = "isInError")
+    @Column(name = "is_in_error")
     public Boolean getInError() {
         return isInError;
     }
