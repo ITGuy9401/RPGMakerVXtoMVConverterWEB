@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 import java.sql.Blob;
 import java.time.ZonedDateTime;
 
-@Service
+@Service("makerConversionService")
 public class ConversionService {
 
     private ConversionDao conversionDao;
