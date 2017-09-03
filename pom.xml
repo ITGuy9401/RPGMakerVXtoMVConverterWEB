@@ -163,7 +163,7 @@
                             <executable>ls</executable>
                             <workingDirectory>src/main/resources/dev-static</workingDirectory>
                             <arguments>
-                                <argument>build</argument>
+                                <argument>build/default</argument>
                             </arguments>
                         </configuration>
                     </execution>
