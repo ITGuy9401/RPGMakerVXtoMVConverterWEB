@@ -18,7 +18,7 @@ public class Conversion {
     private ElementType elementType;
     private Status status;
     private String email;
-    private Boolean isInError;
+    private String ticketPassphrase;
 
     @Id
     @Column(name = "uuid")
@@ -104,12 +104,12 @@ public class Conversion {
         this.email = email;
     }
 
-    @Column(name = "is_in_error")
-    public Boolean getInError() {
-        return isInError;
+    @Column(name = "ticket_passphrase")
+    public String getTicketPassphrase() {
+        return ticketPassphrase;
     }
 
-    public void setInError(Boolean inError) {
-        isInError = inError;
+    public void setTicketPassphrase(String ticketPassphrase) {
+        this.ticketPassphrase = ticketPassphrase;
     }
 }

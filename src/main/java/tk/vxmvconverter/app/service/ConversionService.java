@@ -26,6 +26,14 @@ public class ConversionService {
         return conversionDao.findFirstByStatusOrderByConversionRequestAsc(Status.RECEIVED);
     }
 
+    public Conversion getConversion(String uuid) throws Exception {
+        try {
+            return conversionDao.findOne(uuid);
+        } catch (Exception e) {
+            throw new ConverterException(Error.UNKNOWN_ERROR, e);
+        }
+    }
+
     @Transactional
     public String save(byte[] data, ElementType type, DestinationVersion destinationVersion, String email) throws Exception {
         try {
