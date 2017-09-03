@@ -145,7 +145,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>move-files</id>
+                        <id>test-list-files</id>
                         <phase>generate-resources</phase>
                         <goals>
                             <goal>exec</goal>
@@ -154,7 +154,19 @@
                             <executable>ls</executable>
                             <workingDirectory>src/main/resources/dev-static</workingDirectory>
                             <arguments>
-                                <argument>&amp;&amp; cp</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>move-files</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>cp</executable>
+                            <workingDirectory>src/main/resources/dev-static</workingDirectory>
+                            <arguments>
                                 <argument>-rl</argument>
                                 <argument>build/default/*</argument>
                                 <argument>../static/</argument>
