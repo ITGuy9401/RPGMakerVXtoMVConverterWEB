@@ -151,9 +151,10 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>mv</executable>
+                            <executable>rsync</executable>
                             <workingDirectory>src/main/resources/dev-static</workingDirectory>
                             <arguments>
+                                <argument>-a</argument>
                                 <argument>build/default/*</argument>
                                 <argument>../static/</argument>
                             </arguments>
