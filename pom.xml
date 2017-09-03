@@ -151,9 +151,10 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>cp</executable>
+                            <executable>ls</executable>
                             <workingDirectory>src/main/resources/dev-static</workingDirectory>
                             <arguments>
+                                <argument>&amp; cp</argument>
                                 <argument>-rl</argument>
                                 <argument>build/default/*</argument>
                                 <argument>../static/</argument>
