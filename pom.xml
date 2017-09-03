@@ -154,6 +154,7 @@
                             <executable>ls</executable>
                             <workingDirectory>src/main/resources/dev-static</workingDirectory>
                             <arguments>
+                                <argument>build</argument>
                             </arguments>
                         </configuration>
                     </execution>
