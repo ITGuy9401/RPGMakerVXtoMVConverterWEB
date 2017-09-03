@@ -1,6 +1,7 @@
 package tk.vxmvconverter.app.batch.jobs;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.ImageHtmlEmail;
 import org.apache.commons.mail.resolver.DataSourceUrlResolver;
@@ -19,6 +20,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.SecureRandom;
 import java.sql.Blob;
 import java.sql.SQLException;
 
@@ -30,6 +32,8 @@ public class ConvertImages implements Runnable {
     private ConversionBatchService conversionBatchService;
 
     private Environment env;
+
+    char[] pwdCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~`!@#$%^&*()-_=+[{]}\\|;:\'\",<.>/?".toCharArray();
 
     @Autowired
     public void setEnv(Environment env) {
@@ -59,6 +63,9 @@ public class ConvertImages implements Runnable {
     }
 
     private void sendEmail(Conversion conversion) throws EmailException, MalformedURLException {
+
+        //FIXME Implements
+
         // load your HTML email template
         String htmlEmailTemplate = ".... <img src=\"http://www.apache.org/images/feather.gif\"> ....";
 
@@ -104,8 +111,11 @@ public class ConvertImages implements Runnable {
                 break;
         }
 
+        String pwd = RandomStringUtils.random(20, 0, pwdCharacters.length - 1, false, false, pwdCharacters, new SecureRandom());
+
         conversion.setData(data);
         conversion.setStatus(Status.PROCESSED);
+        conversion.setTicketPassphrase(pwd);
         conversion = conversionService.update(conversion);
         return conversion;
     }
