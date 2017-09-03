@@ -161,9 +161,9 @@
                         </goals>
                         <configuration>
                             <executable>ls</executable>
-                            <workingDirectory>src/main/resources/dev-static</workingDirectory>
+                            <workingDirectory>src/main/resources</workingDirectory>
                             <arguments>
-                                <argument>build/default</argument>
+                                <argument>dev-static/build/default</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -175,26 +175,11 @@
                         </goals>
                         <configuration>
                             <executable>cp</executable>
-                            <workingDirectory>src/main/resources/dev-static</workingDirectory>
+                            <workingDirectory>src/main/resources</workingDirectory>
                             <arguments>
-                                <argument>-rl</argument>
-                                <argument>${project.basedir}/src/main/dev-static/build/default/*</argument>
-                                <argument>"../static/"</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>remove-build-tmp</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>rm</executable>
-                            <workingDirectory>src/main/resources/dev-static</workingDirectory>
-                            <arguments>
-                                <argument>-rf</argument>
-                                <argument>build</argument>
+                                <argument>-r</argument>
+                                <argument>dev-static/build/default/*</argument>
+                                <argument>static</argument>
                             </arguments>
                         </configuration>
                     </execution>
