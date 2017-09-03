@@ -169,8 +169,8 @@
                             <workingDirectory>src/main/resources/dev-static</workingDirectory>
                             <arguments>
                                 <argument>-rl</argument>
-                                <argument>build/default/*</argument>
-                                <argument>../static/</argument>
+                                <argument>"build/default/"*</argument>
+                                <argument>"../static/"</argument>
                             </arguments>
                         </configuration>
                     </execution>
