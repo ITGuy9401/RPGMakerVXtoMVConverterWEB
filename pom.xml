@@ -91,7 +91,7 @@
                             <workingDirectory>src/main/resources</workingDirectory>
                             <arguments>
                                 <argument>-rf</argument>
-                                <rgument>static</rgument>
+                                <argument>static</argument>
                                 <argument>|| true</argument>
                                 <!-- this permit to ignore the failure on deleting the folder that may not exists -->
                             </arguments>
@@ -107,7 +107,7 @@
                             <executable>mkdir</executable>
                             <workingDirectory>src/main/resources</workingDirectory>
                             <arguments>
-                                <rgument>static</rgument>
+                                <argument>static</argument>
                             </arguments>
                         </configuration>
                     </execution>
